@@ -3,13 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Profesor;
+use App\Models\Titulacion;
 use Illuminate\View\View;
 
 class VoteController extends Controller
 {
-    public function show(): View
+    public function show(string $abreviatura): View
     {
-        return view('vote');
+        $titulacion = Titulacion::where('abreviatura', $abreviatura)->first();
+
+        if($titulacion == null){
+            session()->flash('error', 'No existe');
+            return view('index');
+        }
+
+        return view('vote')->with('titulacion', $titulacion);
     }
 
     public function vote(int $id)
@@ -17,15 +25,15 @@ class VoteController extends Controller
         $prof = Profesor::findOrFail($id);
 
         if($prof->elegible == false) {
-            session()->flash('error', 'No puedes votar a este!');
-            return redirect('/votar');
+            session()->flash('error', 'No elegible');
+            return redirect('/');
         }
 
         $prof->votos = ($prof->votos + 1);
         $prof->save();
 
         session()->flash('success', 'Has votado a:' . $prof->nombre);
-        return redirect('/votar');
+        return redirect('/');
     }
 
 }

@@ -10,7 +10,7 @@ use Livewire\Component;
 class CrearProfesor extends Component
 {
 
-    #[Validate('required|min:5|max:255')]
+    #[Validate('required|min:2|max:255')]
     public $nombre = '';
 
     public $votos = 0;
@@ -26,7 +26,7 @@ class CrearProfesor extends Component
         Profesor::create($this->all());
         session()->flash('success', 'Profesor ' . $this->nombre .  ' creado. Por defecto, ha recibido ' . $this->votos . ' votos, y ' . ($this->elegible ? "SÍ" : "NO") . ' es elegible');
 
-        return $this->redirect('/');
+        return $this->redirect('/admin');
     }
 
     public function render()

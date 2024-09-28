@@ -3,22 +3,17 @@
 
 <body>
 
-@foreach(App\Models\Titulacion::all() as $titulacion)
-
-    <div tabindex="0" class="collapse collapse-arrow border-base-300 bg-base-200 border">
-        <div class="collapse-title text-xl font-medium">{{ $titulacion->nombre }} ({{ $titulacion->abreviatura }}) </div>
-        <div class="collapse-content">
             @foreach($titulacion->cursos()->get() as $curso)
-                <b> {{ $curso->nombre }} </b>
+
+                <b> {{ $curso->nombre }} <a class="btn btn-error" href="{{ url('/borrar/curso/' . $curso->id) }}">Borrar</a> </b>
                 <div class="overflow-x-auto">
                     <table class="table">
-                        <!-- head -->
                         <thead>
                         <tr>
                             <th>#</th>
                             <th>Nombre</th>
-                            <th>Elegible</th>
-                            <th>Votos</th>
+                            <th>Elegible (Admin)</th>
+                            <th>Votos (Admin)</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -28,7 +23,7 @@
                                 <td>{{ $prof->nombre  }}</td>
                                 <td>{{ $prof->elegible }}</td>
                                 <td>{{ $prof->votos }}</td>
-                                <td><a class="btn btn-accent" href="{{ url('/votar/' . $prof->id) }}">Votar</a></td>
+                                <td><a class="btn btn-accent" href="{{ url('/votar/' . $prof->id) }}">Votar</a> <a class="btn btn-error" href="{{ url('/borrar/profesor/' . $prof->id) }}">Borrar</a> <a class="btn btn-error" href="{{ url('/actualizar/profesor/' . $prof->id) }}">Editar</a></td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -36,8 +31,6 @@
                 </div>
 
             @endforeach
-        </div>
-    </div>
-@endforeach
+
 </body>
 </html>

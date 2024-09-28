@@ -26,7 +26,7 @@ class CrearCurso extends Component
         Curso::create($this->all());
         session()->flash('success', 'Curso ' . $this->nombre . ' (' . $this->abreviatura . ')' . ' creado');
 
-        return $this->redirect('/');
+        return $this->redirect('/admin');
     }
 
     public function render()

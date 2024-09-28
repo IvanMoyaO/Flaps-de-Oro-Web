@@ -7,6 +7,30 @@
     @vite('resources/css/app.css')
 </head>
 
+
+
+    <nav class="navbar bg-primary text-primary-content rounded-box">
+        <div class="flex-1">
+            <a class="btn btn-ghost text-xl" href="{{ route("index") }}">Flaps de Oro</a>
+        </div>
+        <div class="flex-none">
+            <ul class="menu menu-horizontal px-1">
+                <li><a href="{{ route("admin") }}">Admin</a></li>
+                <li>
+                    <details>
+                        <summary>Links</summary>
+                        <ul class="bg-base-100 rounded-t-none p-2">
+                            <li><a>Link 1</a></li>
+                            <li><a>Link 2</a></li>
+                        </ul>
+                    </details>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+
 @if (session()->has('success'))
     <div role="alert" class="alert alert-success">
         <svg
@@ -20,22 +44,8 @@
                 stroke-width="2"
                 d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
-
         <span> {{ session('success') }} </span>
-
     </div>
-
-    <dialog id="my_modal_1" class="modal">
-        <div class="modal-box">
-            <h3 class="text-lg font-bold">Hello!</h3>
-            <p class="py-4">Press ESC key or click the button below to close</p>
-            <div class="modal-action">
-                <form method="dialog">
-                    <!-- if there is a button in form, it will close the modal -->
-                    <button class="btn">Close</button>
-                </form>
-            </div>
-        </div>
 
 
 @endif
@@ -54,7 +64,7 @@
                 d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
 
-        <span> {{ session('success') }} </span>
+        <span> {{ session('error') }} </span>
 
     </div>
 @endif

@@ -22,7 +22,7 @@ class CrearTitulacion extends Component
         Titulacion::create($this->all());
         session()->flash('success', 'Titulación ' . $this->nombre . ' (' . $this->abreviatura . ')' . ' creada');
 
-        return $this->redirect('/');
+        return $this->redirect('/admin');
     }
 
     public function render()
