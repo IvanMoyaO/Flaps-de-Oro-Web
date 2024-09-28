@@ -33,4 +33,4 @@
             @endforeach
 
 </body>
-</html>
+
